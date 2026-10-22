@@ -1,7 +1,7 @@
 # Mini SIAKAD - Proyek Akhir Pemrograman Web
 
-**Nama:** ISI_NAMA
-**NIM:** ISI_NIM
+**Nama:** SUNTA ADITYA PANGESTU
+**NIM:** C030325051
 
 ## Controller yang Dibuat
 | Controller | Jenis | Fungsi |
