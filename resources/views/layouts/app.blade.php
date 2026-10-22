@@ -8,22 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <nav class="navbar navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="{{ route('mahasiswa.index') }}">SIAKAD Mini</a>
-            <div class="navbar-nav flex-row gap-3">
-                <a class="nav-link" href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
-                <a class="nav-link" href="{{ route('matakuliah.index') }}">Mata Kuliah</a>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        @if (session('pesan'))
-            <div class="alert alert-success">{{ session('pesan') }}</div>
-        @endif
-        @yield('content')
-    </div>
+<div class="navbar-nav flex-row gap-3">
+    <a class="nav-link" href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
+    <a class="nav-link" href="{{ route('matakuliah.index') }}">Mata Kuliah</a>
+    <a class="nav-link" href="{{ url('/laporan') }}">Laporan</a>
+    <a class="nav-link" href="{{ url('/demo/eager-loading') }}">Query Log</a>
+</div>
+<div class="container">
+    @if (session('pesan'))
+        <div class="alert alert-success">{{ session('pesan') }}</div>
+    @endif
+    @yield('content')
+</div>
 </body>
 
 </html>

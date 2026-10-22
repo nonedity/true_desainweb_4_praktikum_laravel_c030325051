@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class MahasiswaController extends Controller
@@ -20,10 +21,18 @@ class MahasiswaController extends Controller
         ];
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $mahasiswa = Mahasiswa::orderBy('nama')->get();
-        return view('mahasiswa.index', compact('mahasiswa'));
+        DB::enableQueryLog();
+
+        $lazy = $request->boolean('lazy');   // ?lazy=1 hanya untuk demonstrasi N+1
+
+        $mahasiswa = Mahasiswa::query()
+            ->when(!$lazy, fn($q) => $q->with('nilai'))   // eager loading
+            ->orderBy('nama')
+            ->get();
+
+        return view('mahasiswa.index', compact('mahasiswa', 'lazy'));
     }
 
     public function create()

@@ -23,4 +23,12 @@ class Mahasiswa extends Model
             get: fn() => $this->semester >= 7 ? 'Tingkat Akhir' : 'Aktif',
         );
     }
+
+    // Accessor: rata-rata nilai. Memakai relasi, jadi sumber N+1 jika tanpa with()
+    protected function rataNilai(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->nilai->isEmpty() ? null : round((float) $this->nilai->avg('nilai'), 2),
+        );
+    }
 }
