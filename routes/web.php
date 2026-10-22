@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LatihanController;
+use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\SapaController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,15 @@ Route::get('/sapa-closure', function () {
 Route::get('/sapa-controller', [SapaController::class, 'index']);
 
 Route::get('/latihan', [LatihanController::class, 'indeks']);
+
+Route::post('/mahasiswa-uji', [MahasiswaController::class, 'store']);
+Route::get('/mahasiswa-uji', function () {
+    return view('mahasiswa.form-uji');
+});
+
+Route::get('/api-mahasiswa', [MahasiswaController::class, 'apiIndex']);
+
+Route::get('/cari-mahasiswa', [MahasiswaController::class, 'cariMahasiswa']);
+Route::get('/form-cari', function () {
+    return view('mahasiswa.form-cari');
+});
