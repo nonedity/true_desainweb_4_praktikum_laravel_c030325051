@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\EloquentDemoController;
 use App\Http\Controllers\HitungTotalSksController;
 use App\Http\Controllers\Laporan\RekapController;
 use App\Http\Controllers\LatihanController;
@@ -66,3 +67,5 @@ Route::prefix('qb')->name('qb.')->controller(QueryBuilderDemoController::class)-
 
     Route::get('/halaman', 'halaman');
 });
+
+Route::get('/demo/eager-loading', [EloquentDemoController::class, 'bandingkan']);
