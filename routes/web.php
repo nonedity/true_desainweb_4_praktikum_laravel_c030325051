@@ -6,6 +6,7 @@ use App\Http\Controllers\Laporan\RekapController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\QueryBuilderDemoController;
 use App\Http\Controllers\SapaController;
 use App\Http\Controllers\StatistikMahasiswaController;
 use Illuminate\Support\Facades\Route;
@@ -46,3 +47,22 @@ Route::resource('matakuliah', MatakuliahController::class);
 Route::get('/total-sks', HitungTotalSksController::class);
 
 Route::get('/laporan/rekap', [RekapController::class, 'index']);
+
+Route::prefix('qb')->name('qb.')->controller(QueryBuilderDemoController::class)->group(function () {
+    Route::get('/semua', 'tampilkanSemua')->name('semua');
+    Route::get('/filter', 'tampilkanFilter')->name('filter');
+    Route::get('/filter-lanjut', 'filterLanjut');
+    Route::get('/agregasi', 'agregasi');
+    Route::get('/prodi', 'statistikProdi')->name('prodi');
+    Route::get('/join', 'join');
+    Route::get('/halaman-json', 'halamanJson');
+
+    Route::get('/crud', 'crud')->name('crud');
+    Route::post('/crud', 'simpan')->name('crud.simpan');
+    Route::put('/crud/{id}', 'ubah')->name('crud.ubah');
+    Route::delete('/crud/{id}', 'hapus')->name('crud.hapus');
+
+    Route::get('/tugas-1', 'tugasSatu');
+
+    Route::get('/halaman', 'halaman');
+});
