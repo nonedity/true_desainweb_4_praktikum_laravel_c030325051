@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\HitungTotalSksController;
+use App\Http\Controllers\Laporan\RekapController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\SapaController;
+use App\Http\Controllers\StatistikMahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +24,7 @@ Route::get('/sapa-controller', [SapaController::class, 'index']);
 
 Route::get('/latihan', [LatihanController::class, 'indeks']);
 
+Route::resource('mahasiswa', MahasiswaController::class);
 Route::post('/mahasiswa-uji', [MahasiswaController::class, 'store']);
 Route::get('/mahasiswa-uji', function () {
     return view('mahasiswa.form-uji');
@@ -30,3 +36,13 @@ Route::get('/cari-mahasiswa', [MahasiswaController::class, 'cariMahasiswa']);
 Route::get('/form-cari', function () {
     return view('mahasiswa.form-cari');
 });
+
+Route::get('/statistik', StatistikMahasiswaController::class);
+
+Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+
+Route::resource('matakuliah', MatakuliahController::class);
+
+Route::get('/total-sks', HitungTotalSksController::class);
+
+Route::get('/laporan/rekap', [RekapController::class, 'index']);
